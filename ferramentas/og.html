@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Imagem de compartilhamento</title>
+<!-- Fonte da imagem assets/img/og.png (1200x630). Regenerar: python3 ferramentas/gerar-og.py -->
+<style>
+  @font-face { font-family: "Archivo"; src: url("../assets/fonts/archivo-var-latin.woff2") format("woff2"); font-weight: 100 900; font-stretch: 62% 125%; }
+  @font-face { font-family: "IBM Plex Mono"; src: url("../assets/fonts/plexmono-600-latin.woff2") format("woff2"); font-weight: 600; }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  body {
+    background:
+      radial-gradient(55% 60% at 85% 100%, rgba(255, 178, 26, 0.16), transparent 70%),
+      linear-gradient(transparent 0 97%, rgba(255, 255, 255, 0.03) 97% 100%) 0 0 / 100% 42px,
+      #07090d;
+    color: #eef2f6; font-family: "Archivo", sans-serif;
+    padding: 64px 72px; display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .quem { display: flex; align-items: center; gap: 14px; font-size: 26px; color: #a9b3bf; }
+  .sigla { display: grid; place-items: center; width: 52px; height: 52px; border-radius: 12px; background: #ffb21a; color: #0b0b0b; font: 600 24px/1 "IBM Plex Mono", monospace; }
+  h1 { font-size: 76px; font-weight: 820; font-stretch: 112%; letter-spacing: -0.03em; line-height: 0.98; max-width: 15ch; }
+  .painel { display: grid; gap: 10px; }
+  .linha { display: flex; gap: 22px; align-items: center; }
+  .campo { display: flex; gap: 4px; }
+  .p { display: grid; place-items: center; width: 26px; height: 38px; border-radius: 4px; background: linear-gradient(180deg, #1a2029 0 50%, #141920 50% 100%); font: 600 22px/1 "IBM Plex Mono", monospace; position: relative; }
+  .p::after { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: rgba(0,0,0,.7); }
+  .a .p { color: #ffb21a; } .v .p { color: #3ee08f; }
+</style>
+</head>
+<body>
+  <p class="quem"><span class="sigla">GT</span>Gabriel Tavares · Tech Lead Fullstack</p>
+  <h1>Sistemas B2B multi&#8209;tenant que aguentam escala.</h1>
+  <div class="painel" id="painel"></div>
+  <script>
+    const linhas = [
+      ['PEDIDOS B2B', '+50K COMPRADORES', 'NO AR'],
+      ['WHATSAPP', 'MILHARES MSG/S', 'NO AR'],
+      ['MCP DE DADOS', 'CS + SAC', 'NO AR'],
+    ];
+    const campo = (texto, largura, classe) => {
+      const c = document.createElement('div');
+      c.className = 'campo ' + classe;
+      for (const ch of texto.padEnd(largura, ' ')) {
+        const p = document.createElement('span');
+        p.className = 'p';
+        p.textContent = ch === ' ' ? ' ' : ch;
+        c.appendChild(p);
+      }
+      return c;
+    };
+    const painel = document.getElementById('painel');
+    for (const [s, e, st] of linhas) {
+      const l = document.createElement('div');
+      l.className = 'linha';
+      l.append(campo(s, 12, ''), campo(e, 16, 'a'), campo(st, 5, 'v'));
+      painel.appendChild(l);
+    }
+  </script>
+</body>
+</html>

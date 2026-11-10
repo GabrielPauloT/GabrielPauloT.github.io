@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gabriel Tavares · Tech Lead Fullstack</title>
+<meta name="description" content="Tech Lead Fullstack na B2LIST. Construo sistemas B2B multi-tenant em escala com Java, Spring Boot, Node.js e React, usando Spec-Driven Development com IA.">
+<meta name="author" content="Gabriel Paulo Tavares da Silva">
+<meta name="theme-color" content="#07090d">
+<link rel="canonical" href="https://gabrielpaulot.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://gabrielpaulot.github.io/">
+<meta property="og:site_name" content="Gabriel Tavares">
+<meta property="og:title" content="Gabriel Tavares · Tech Lead Fullstack">
+<meta property="og:description" content="Sistemas B2B multi-tenant em escala: +50K compradores, +10 distribuidoras, WhatsApp em massa e IA consultando os dados.">
+<meta property="og:image" content="https://gabrielpaulot.github.io/assets/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/archivo-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/plexmono-600-latin.woff2" as="font" type="font/woff2" crossorigin>
+<script>
+  /* Títulos só aparecem com a fonte certa (sem troca de fonte na frente de quem lê); 2,5 s de segurança. */
+  (function () {
+    var d = document.documentElement;
+    d.classList.add('js', 'fontes-carregando');
+    function pronto() { d.classList.remove('fontes-carregando'); d.classList.add('fontes-prontas'); }
+    setTimeout(pronto, 2500);
+    if (document.fonts && document.fonts.load) {
+      Promise.all([
+        document.fonts.load('800 1em "Archivo"'),
+        document.fonts.load('400 1em "Archivo"'),
+        document.fonts.load('600 1em "IBM Plex Mono"')
+      ]).then(pronto, pronto);
+    } else {
+      pronto();
+    }
+  })();
+</script>
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="topo" data-topo>
+  <div class="topo__dentro">
+    <a class="marca" href="#inicio" aria-label="Gabriel Tavares, voltar ao início">
+      <span class="marca__sigla" aria-hidden="true">GT</span>
+      <span class="marca__nome">Gabriel Tavares</span>
+    </a>
+    <nav class="nav" aria-label="Seções">
+      <a href="#sistemas">Sistemas</a>
+      <a href="#metodo">Como trabalho</a>
+      <a href="#trajetoria">Trajetória</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <a class="botao botao--pequeno" href="curriculo/Gabriel-Tavares-Curriculo.pdf" download>Currículo<span class="sumir-no-celular">&nbsp;em PDF</span></a>
+  </div>
+</header>
+
+<main id="conteudo">
+
+  <!-- ============ Abertura ============ -->
+  <section class="abertura" id="inicio">
+    <div class="moldura">
+      <p class="abertura__quem"><span class="led" aria-hidden="true"></span>Gabriel Paulo Tavares da Silva · Tech Lead Fullstack na B2LIST</p>
+      <h1 class="abertura__titulo">Construo sistemas B2B multi&#8209;tenant que aguentam escala.</h1>
+      <p class="abertura__sub">Lidero tecnicamente um time de +10 pessoas e a arquitetura de uma plataforma que conecta +50K compradores a +10 distribuidoras. Java, Spring Boot, Node.js e React, com Spec-Driven Development e agentes de IA no dia a dia.</p>
+      <div class="abertura__acoes">
+        <a class="botao" href="mailto:gabrielpt201111@hotmail.com">Falar comigo</a>
+        <a class="botao botao--vazado" href="https://www.linkedin.com/in/gabrielpaulotavares" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="botao botao--vazado" href="https://github.com/GabrielPauloT" target="_blank" rel="noopener">GitHub</a>
+      </div>
+
+      <figure class="painel" aria-labelledby="painel-titulo">
+        <figcaption class="painel__barra">
+          <span id="painel-titulo">Painel de operações</span>
+          <span class="painel__hora" aria-hidden="true"><span class="sumir-no-celular">Brasília </span><time data-relogio>--:--</time></span>
+        </figcaption>
+        <div class="painel__cabecalho" aria-hidden="true">
+          <span>Sistema</span><span>Escala</span><span>Status</span>
+        </div>
+        <ol class="painel__linhas" data-painel>
+          <li><a class="linha" href="#pedidos" data-sistema="PEDIDOS B2B" data-escala="+50K COMPRADORES" data-status="NO AR"><span class="linha__texto">Pedidos B2B: +50K compradores, no ar</span></a></li>
+          <li><a class="linha" href="#whatsapp" data-sistema="WHATSAPP" data-escala="MILHARES MSG/S" data-status="NO AR"><span class="linha__texto">WhatsApp: milhares de mensagens por segundo, no ar</span></a></li>
+          <li><a class="linha" href="#mcp" data-sistema="MCP DE DADOS" data-escala="CS + SAC" data-status="NO AR"><span class="linha__texto">MCP de dados: CS e SAC, no ar</span></a></li>
+          <li><a class="linha" href="#performance" data-sistema="SYNC PROMOÇÕES" data-escala="3 S (ERA 40 MIN)" data-status="OTIMIZADO"><span class="linha__texto">Sync de promoções: 3 segundos, eram 40 minutos, otimizado</span></a></li>
+          <li><a class="linha" href="#seguranca" data-sistema="SPRING BOOT 4.1" data-escala="11 REPOSITÓRIOS" data-status="MIGRADO"><span class="linha__texto">Spring Boot 4.1: 11 repositórios, migrado</span></a></li>
+          <li><a class="linha" href="#juvale" data-sistema="JUVALE" data-escala="+1.300 FUNC." data-status="NO AR"><span class="linha__texto">Juvale: +1.300 funcionários, no ar</span></a></li>
+        </ol>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============ Sistemas ============ -->
+  <section class="secao" id="sistemas" aria-labelledby="t-sistemas">
+    <div class="moldura">
+      <p class="rotulo">Sistemas</p>
+      <h2 class="secao__titulo" id="t-sistemas">O que eu construí e coloquei no ar</h2>
+      <p class="secao__intro">Cada linha do painel tem uma história. Estas são as que mais pesam.</p>
+
+      <div class="grade">
+        <article class="cartao" id="pedidos" data-revelar>
+          <p class="cartao__area">B2LIST · Arquitetura</p>
+          <h3 class="cartao__titulo">Backend multi-tenant, do zero</h3>
+          <p>Um banco PostgreSQL por distribuidora, escolhido a cada request pelo Hibernate, e regras de pedido por tenant com Strategy Pattern (Pricing → Discount → Validation), sem mexer no core.</p>
+          <p class="cartao__numero"><span>+413</span> testes · 90%+ de cobertura</p>
+          <ul class="etiquetas" aria-label="Tecnologias"><li>Java 21</li><li>Spring Boot</li><li>PostgreSQL</li><li>Hibernate</li><li>HikariCP</li></ul>
+        </article>
+
+        <article class="cartao" id="whatsapp" data-revelar>
+          <p class="cartao__area">B2LIST · Mensageria</p>
+          <h3 class="cartao__titulo">WhatsApp em massa, 3 microservices</h3>
+          <p>Orchestrator com agendamentos e CSV em lotes de 5K, Sender com despacho paralelo via Virtual Threads e Webhook que correlaciona o status no Redis em menos de 100 ms.</p>
+          <p class="cartao__numero"><span>+50K</span> compradores por distribuidora</p>
+          <ul class="etiquetas" aria-label="Tecnologias"><li>Java 21</li><li>Virtual Threads</li><li>Redis</li><li>MongoDB</li><li>360dialog</li></ul>
+        </article>
+
+        <article class="cartao cartao--destaque" id="mcp" data-revelar>
+          <p class="cartao__area">B2LIST · IA</p>
+          <h3 class="cartao__titulo">Servidor MCP de dados</h3>
+          <div class="conversa" aria-label="Exemplo ilustrativo de uso">
+            <p class="conversa__pergunta">Quanto cada distribuidora vendeu em outubro?</p>
+            <p class="conversa__ferramenta"><code>query</code> SELECT tenant, SUM(total_brl) … GROUP BY tenant</p>
+          </div>
+          <p>Os times de CS e SAC perguntam ao Claude, e o servidor responde com os dados do lakehouse: SQL protegido com sqlglot, acesso via Keycloak e evals com gabarito.</p>
+          <p class="cartao__numero"><span>DuckDB</span> no lugar do Athena</p>
+          <ul class="etiquetas" aria-label="Tecnologias"><li>Python</li><li>MCP</li><li>DuckDB</li><li>sqlglot</li><li>Keycloak</li></ul>
+        </article>
+
+        <article class="cartao" id="performance" data-revelar>
+          <p class="cartao__area">B2LIST · Legado</p>
+          <h3 class="cartao__titulo">Sync de promoções</h3>
+          <div class="cronometro" data-cronometro data-de="40:00" data-para="00:03" aria-label="De 40 minutos para 3 segundos">
+            <span class="cronometro__texto">00:03</span>
+          </div>
+          <p>Aggregation Pipeline, operações em lote e os índices certos em 700K+ documentos, em +10 conectores em produção. Sem N+1, sem save em loop.</p>
+          <p class="cartao__numero"><span>40 min</span> viraram 3 s</p>
+          <ul class="etiquetas" aria-label="Tecnologias"><li>Kotlin</li><li>Java 8</li><li>MongoDB</li></ul>
+        </article>
+
+        <article class="cartao" id="seguranca" data-revelar>
+          <p class="cartao__area">B2LIST · ISO 27001</p>
+          <h3 class="cartao__titulo">Segurança do backend</h3>
+          <canvas class="pontos" data-pontos width="560" height="150" aria-label="Mais de 200 achados se agrupando em 12 causas raiz" role="img"></canvas>
+          <p>Conduzi a remediação de vulnerabilidades: mais de 200 achados do Aikido agrupados em ~12 causas raiz e tratados por risco.</p>
+          <p class="cartao__numero"><span>11</span> repositórios no Spring Boot 4.1</p>
+          <ul class="etiquetas" aria-label="Tecnologias"><li>Spring Boot 4</li><li>Maven</li><li>Aikido</li></ul>
+        </article>
+
+        <article class="cartao" id="juvale" data-revelar>
+          <p class="cartao__area">Freelance · Produto próprio</p>
+          <h3 class="cartao__titulo">Juvale</h3>
+          <p>Gestão de vale-transporte e vale-refeição: cálculo por dias trabalhados (com faltas, férias e feriados), planilhas de recarga da Alelo e da Pluxee e relatórios em PDF.</p>
+          <p class="cartao__numero"><span>+1.300</span> funcionários em produção</p>
+          <ul class="etiquetas" aria-label="Tecnologias"><li>Node.js</li><li>NestJS</li><li>Prisma</li><li>PostgreSQL</li><li>Next.js</li></ul>
+          <p class="cartao__links">
+            <a href="https://github.com/GabrielPauloT/juvale-api" target="_blank" rel="noopener">Código da API</a>
+            <a href="https://github.com/GabrielPauloT/juvale" target="_blank" rel="noopener">Código do front</a>
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Método ============ -->
+  <section class="secao secao--faixa" id="metodo" aria-labelledby="t-metodo">
+    <div class="moldura">
+      <p class="rotulo">Como trabalho</p>
+      <h2 class="secao__titulo" id="t-metodo">Spec-Driven Development com IA</h2>
+      <p class="secao__intro">Uso o Claude Code como par de desenvolvimento no dia a dia, sempre na mesma ordem. A refatoração do domain de pedidos foi projetada e validada assim antes de qualquer código ser mergeado.</p>
+      <ol class="etapas">
+        <li class="etapa" data-revelar><span class="etapa__n">1</span><h3>Spec</h3><p>Desenho e critérios de aceite escritos antes de qualquer linha de código.</p></li>
+        <li class="etapa" data-revelar><span class="etapa__n">2</span><h3>Agentes</h3><p>Pesquisa, implementação e review em paralelo, com memória persistente de cada sistema.</p></li>
+        <li class="etapa" data-revelar><span class="etapa__n">3</span><h3>Testes</h3><p>TDD com agentes e evals com gabarito para medir o que a IA responde.</p></li>
+        <li class="etapa" data-revelar><span class="etapa__n">4</span><h3>Merge</h3><p>Review com régua de critérios antes de qualquer coisa entrar na trunk.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ Trajetória ============ -->
+  <section class="secao" id="trajetoria" aria-labelledby="t-trajetoria">
+    <div class="moldura moldura--dupla">
+      <div>
+        <p class="rotulo">Trajetória</p>
+        <h2 class="secao__titulo" id="t-trajetoria">De full stack a tech lead</h2>
+        <ol class="linha-do-tempo">
+          <li data-revelar>
+            <p class="quando">nov/2023 – atual <span class="selo">atual</span></p>
+            <h3>Tech Lead · B2LIST</h3>
+            <p>Lidero tecnicamente um time de +10 pessoas e a arquitetura da plataforma B2B que digitaliza a cadeia de suprimentos.</p>
+          </li>
+          <li data-revelar>
+            <p class="quando">jan/2025 – atual <span class="selo">atual</span></p>
+            <h3>Full Stack Developer · Juvale (freelance)</h3>
+            <p>Produto próprio em produção, do banco ao front.</p>
+          </li>
+          <li data-revelar>
+            <p class="quando">dez/2022 – nov/2023</p>
+            <h3>Full Stack Developer · B2LIST</h3>
+            <p>Aplicações internas com Vite, React, TypeScript, Spring Boot e React Native.</p>
+          </li>
+          <li data-revelar>
+            <p class="quando">mar/2022 – dez/2024</p>
+            <h3>Full Stack Developer · UNIPAM</h3>
+            <p>Novo Painel do Aluno em equipe (Next.js + .NET) e o UniAgenda, sistema de agendamento de salas da universidade, feito sozinho.</p>
+          </li>
+        </ol>
+        <p class="formacao">Bacharelado em Sistemas de Informação · UNIPAM · 2020–2023</p>
+      </div>
+
+      <div>
+        <p class="rotulo">Stack</p>
+        <h2 class="secao__titulo">Ferramentas do dia a dia</h2>
+        <dl class="stack">
+          <div><dt>Backend</dt><dd>Java 8/17/21 · Kotlin · Spring Boot 2.1–4.1 · Node.js · NestJS · Python</dd></div>
+          <div><dt>Dados</dt><dd>PostgreSQL · MongoDB · Redis · RabbitMQ · DuckDB · Prisma</dd></div>
+          <div><dt>Front e mobile</dt><dd>React · Next.js · TypeScript · Apollo GraphQL · React Native/Expo</dd></div>
+          <div><dt>Infra</dt><dd>Docker · AWS ECS · Keycloak · Sentry · Prometheus</dd></div>
+          <div><dt>IA</dt><dd>Claude Code · MCP · agentes · evals</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Contato ============ -->
+  <section class="secao" id="contato" aria-labelledby="t-contato">
+    <div class="moldura">
+      <div class="convite" data-revelar>
+        <p class="rotulo">Contato</p>
+        <h2 class="convite__titulo" id="t-contato">Vamos conversar?</h2>
+        <p>Aberto a oportunidades sênior e staff onde escala e IA fazem parte do dia a dia.</p>
+        <div class="abertura__acoes">
+          <a class="botao" href="mailto:gabrielpt201111@hotmail.com">gabrielpt201111@hotmail.com</a>
+          <a class="botao botao--vazado" href="https://www.linkedin.com/in/gabrielpaulotavares" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="botao botao--vazado" href="curriculo/Gabriel-Tavares-Curriculo.pdf" download>Currículo em PDF</a>
+        </div>
+        <p class="convite__local">João Pinheiro, Minas Gerais</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="rodape">
+  <div class="moldura rodape__dentro">
+    <p>© 2026 Gabriel Paulo Tavares da Silva</p>
+    <p>Site estático no GitHub Pages, feito com Claude Code.</p>
+  </div>
+</footer>
+
+<script src="assets/js/site.js" defer></script>
+</body>
+</html>
