@@ -74,23 +74,13 @@
         <a class="botao botao--vazado" href="https://github.com/GabrielPauloT" target="_blank" rel="noopener">GitHub</a>
       </div>
 
-      <figure class="painel" aria-labelledby="painel-titulo">
-        <figcaption class="painel__barra">
-          <span id="painel-titulo">Painel de operações</span>
-          <span class="painel__hora" aria-hidden="true"><span class="sumir-no-celular">Brasília </span><time data-relogio>--:--</time></span>
-        </figcaption>
-        <div class="painel__cabecalho" aria-hidden="true">
-          <span>Sistema</span><span>Escala</span><span>Status</span>
-        </div>
-        <ol class="painel__linhas" data-painel>
-          <li><a class="linha" href="#pedidos" data-sistema="PEDIDOS B2B" data-escala="+50K COMPRADORES" data-status="NO AR"><span class="linha__texto">Pedidos B2B: +50K compradores, no ar</span></a></li>
-          <li><a class="linha" href="#whatsapp" data-sistema="WHATSAPP" data-escala="MILHARES MSG/S" data-status="NO AR"><span class="linha__texto">WhatsApp: milhares de mensagens por segundo, no ar</span></a></li>
-          <li><a class="linha" href="#mcp" data-sistema="MCP DE DADOS" data-escala="CS + SAC" data-status="NO AR"><span class="linha__texto">MCP de dados: CS e SAC, no ar</span></a></li>
-          <li><a class="linha" href="#performance" data-sistema="SYNC PROMOÇÕES" data-escala="3 S (ERA 40 MIN)" data-status="OTIMIZADO"><span class="linha__texto">Sync de promoções: 3 segundos, eram 40 minutos, otimizado</span></a></li>
-          <li><a class="linha" href="#seguranca" data-sistema="SPRING BOOT 4.1" data-escala="11 REPOSITÓRIOS" data-status="MIGRADO"><span class="linha__texto">Spring Boot 4.1: 11 repositórios, migrado</span></a></li>
-          <li><a class="linha" href="#juvale" data-sistema="JUVALE" data-escala="+1.300 FUNC." data-status="NO AR"><span class="linha__texto">Juvale: +1.300 funcionários, no ar</span></a></li>
-        </ol>
-      </figure>
+      <div class="numeros">
+        <a class="numero" href="#pedidos"><span class="numero__valor" data-flip="+50K">+50K</span><span class="numero__rotulo">compradores na plataforma B2B</span></a>
+        <a class="numero" href="#pedidos"><span class="numero__valor" data-flip="+10">+10</span><span class="numero__rotulo">distribuidoras, cada uma com o seu banco</span></a>
+        <a class="numero" href="#trajetoria"><span class="numero__valor" data-flip="+10">+10</span><span class="numero__rotulo">pessoas no time que eu lidero</span></a>
+        <a class="numero" href="#performance"><span class="numero__valor" data-flip="3 S">3 s</span><span class="numero__rotulo">no sync de promoções, que levava 40 min</span></a>
+        <a class="numero" href="#seguranca"><span class="numero__valor" data-flip="11">11</span><span class="numero__rotulo">repositórios migrados para o Spring Boot 4.1</span></a>
+      </div>
     </div>
   </section>
 
@@ -99,7 +89,7 @@
     <div class="moldura">
       <p class="rotulo">Sistemas</p>
       <h2 class="secao__titulo" id="t-sistemas">O que eu construí e coloquei no ar</h2>
-      <p class="secao__intro">Cada linha do painel tem uma história. Estas são as que mais pesam.</p>
+      <p class="secao__intro">Por trás de cada número tem um sistema. Estes são os que mais pesam.</p>
 
       <div class="grade">
         <article class="cartao" id="pedidos" data-revelar>

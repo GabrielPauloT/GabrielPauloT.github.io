@@ -1,5 +1,5 @@
 /* Gabriel Tavares · site pessoal
-   Painel de despacho (split-flap), cronômetro, pontos da segurança e revelação ao rolar.
+   Números com pastilhas (split-flap), cronômetro, pontos da segurança e revelação ao rolar.
    Sem dependências. Respeita prefers-reduced-motion. */
 (() => {
   'use strict';
@@ -7,6 +7,7 @@
   const reduz = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const LETRAS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+-./';
   const DIGITOS = '0123456789';
+  const VAZIO = ' ';
 
   const fontesProntas = () => Promise.race([
     document.fonts ? document.fonts.ready : Promise.resolve(),
@@ -19,40 +20,38 @@
   marcarTopo();
   window.addEventListener('scroll', marcarTopo, { passive: true });
 
-  /* ---------- Relógio de Brasília no painel ---------- */
-  const relogio = document.querySelector('[data-relogio]');
-  if (relogio) {
-    const formato = new Intl.DateTimeFormat('pt-BR', { hour: '2-digit', minute: '2-digit', timeZone: 'America/Sao_Paulo' });
-    const tique = () => { relogio.textContent = formato.format(new Date()); };
-    tique();
-    setInterval(tique, 15000);
-  }
-
   /* ---------- Motor das pastilhas (split-flap) ---------- */
   const fila = [];
   let rodando = false;
 
-  function criarPastilhas(destino, texto, largura, conjunto) {
-    const alvo = [...texto.padEnd(largura, ' ')].slice(0, largura);
-    return alvo.map((caractere) => {
+  // Uma pastilha por caractere; o espaço vira um respiro sem caixa.
+  function criarPastilhas(destino, texto, conjunto) {
+    const lista = [];
+    for (const caractere of texto) {
       const el = document.createElement('span');
+      if (caractere === ' ') {
+        el.className = 'espaco';
+        destino.appendChild(el);
+        continue;
+      }
       el.className = 'pastilha';
-      el.textContent = ' ';
+      el.textContent = VAZIO;
       destino.appendChild(el);
-      return { el, alvo: caractere, conjunto };
-    });
+      lista.push({ el, alvo: caractere, conjunto });
+    }
+    return lista;
   }
 
   function mostrar(p, caractere) {
-    p.el.textContent = caractere === ' ' ? ' ' : caractere;
+    p.el.textContent = caractere === ' ' ? VAZIO : caractere;
   }
 
   function animar(pastilhas, atrasoBase) {
     const agora = performance.now();
     pastilhas.forEach((p, i) => {
       if (reduz) { mostrar(p, p.alvo); return; }
-      p.restam = p.alvo === ' ' ? 1 + (i % 3) : 4 + Math.floor(Math.random() * 6);
-      p.proximo = agora + atrasoBase + i * 24;
+      p.restam = 5 + Math.floor(Math.random() * 6);
+      p.proximo = agora + atrasoBase + i * 60;
       fila.push(p);
     });
     if (!reduz && !rodando) {
@@ -69,7 +68,7 @@
         const conjunto = p.conjunto || LETRAS;
         mostrar(p, conjunto[Math.floor(Math.random() * conjunto.length)]);
         p.restam -= 1;
-        p.proximo = agora + 58;
+        p.proximo = agora + 62;
       } else {
         mostrar(p, p.alvo);
         fila.splice(i, 1);
@@ -77,7 +76,7 @@
       if (p.el.animate) {
         p.el.animate(
           [{ transform: 'perspective(260px) rotateX(-72deg)', filter: 'brightness(1.6)' }, { transform: 'none', filter: 'none' }],
-          { duration: 110, easing: 'ease-out' }
+          { duration: 120, easing: 'ease-out' }
         );
       }
     }
@@ -85,36 +84,19 @@
     else rodando = false;
   }
 
-  /* ---------- Painel de operações ---------- */
-  const LARGURAS = { sistema: 15, escala: 16, status: 9 };
-  const linhas = [...document.querySelectorAll('[data-painel] .linha')];
-  const lotes = linhas.map((link) => {
-    const campos = document.createElement('span');
-    campos.className = 'linha__campos';
-    campos.setAttribute('aria-hidden', 'true');
-    const pastilhas = [];
-    for (const nome of ['sistema', 'escala', 'status']) {
-      const campo = document.createElement('span');
-      campo.className = `campo campo--${nome}`;
-      if (nome === 'status' && link.dataset.status !== 'NO AR') campo.classList.add('campo--alerta');
-      pastilhas.push(...criarPastilhas(campo, link.dataset[nome], LARGURAS[nome]));
-      campos.appendChild(campo);
-    }
-
-    const resumo = document.createElement('span');
-    resumo.className = 'linha__resumo';
-    resumo.setAttribute('aria-hidden', 'true');
-    const escala = document.createElement('span');
-    escala.textContent = link.dataset.escala;
-    const status = document.createElement('b');
-    status.className = link.dataset.status === 'NO AR' ? 'ok' : 'alerta';
-    status.textContent = link.dataset.status;
-    resumo.append(escala, status);
-
-    link.append(campos, resumo);
+  /* ---------- Números do topo ---------- */
+  const lotes = [...document.querySelectorAll('[data-flip]')].map((el) => {
+    const leitura = document.createElement('span');
+    leitura.className = 'so-leitor';
+    leitura.textContent = el.textContent;
+    const caixa = document.createElement('span');
+    caixa.className = 'numero__pastilhas';
+    caixa.setAttribute('aria-hidden', 'true');
+    const pastilhas = criarPastilhas(caixa, el.dataset.flip);
+    el.replaceChildren(leitura, caixa);
     return pastilhas;
   });
-  fontesProntas().then(() => lotes.forEach((pastilhas, r) => animar(pastilhas, 180 + r * 150)));
+  fontesProntas().then(() => lotes.forEach((pastilhas, i) => animar(pastilhas, 200 + i * 170)));
 
   /* ---------- Revelação ao rolar ---------- */
   const reveladores = document.querySelectorAll('[data-revelar]');

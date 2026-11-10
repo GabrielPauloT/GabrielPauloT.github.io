@@ -1,7 +1,7 @@
 /* ==========================================================================
    Gabriel Tavares · site pessoal
-   Conceito: painel de despacho (sala de controle de logística).
-   Um acento só (âmbar de sinalização); verde só para status "no ar".
+   Sala de controle: fundo quase preto, um acento só (âmbar de sinalização),
+   verde só para status "atual". Números do topo em pastilhas split-flap.
    ========================================================================== */
 
 @font-face {
@@ -66,7 +66,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Títulos e painel esperam a fonte (sem troca visível) */
+/* Títulos e números esperam a fonte (sem troca visível) */
 .fontes-carregando .abertura,
 .fontes-carregando .secao__titulo { opacity: 0; }
 .fontes-prontas .abertura,
@@ -84,6 +84,7 @@ img, canvas { display: block; max-width: 100%; }
   background: var(--ambar); color: #000; font-weight: 700; text-decoration: none;
 }
 .pular:focus { top: 12px; }
+.so-leitor { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 .moldura { width: min(100% - 32px, var(--max)); margin-inline: auto; }
 
@@ -145,62 +146,44 @@ img, canvas { display: block; max-width: 100%; }
 .abertura__sub { max-width: 62ch; margin-top: 26px; color: var(--texto-2); font-size: clamp(1.05rem, 1.6vw, 1.2rem); }
 .abertura__acoes { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
 
-/* ---------- Painel de operações (assinatura) ---------- */
-.painel {
-  --pastilha: clamp(15px, 1.9vw, 23px);
-  margin: clamp(44px, 6vw, 72px) 0 0;
-  padding: clamp(14px, 2vw, 22px);
+/* ---------- Números do topo (pastilhas split-flap) ---------- */
+.numeros {
+  display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px;
+  margin-top: clamp(44px, 6vw, 72px);
+}
+.numero {
+  display: flex; flex-direction: column; gap: 14px; padding: 22px 20px;
   border-radius: var(--raio);
   background: linear-gradient(180deg, #0d1117, #090c11);
   border: 1px solid var(--linha);
-  box-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.04);
-}
-.painel__barra {
-  display: flex; justify-content: space-between; align-items: baseline; gap: 12px;
-  padding: 2px 4px 14px; border-bottom: 1px solid var(--linha);
-  font-weight: 700; font-stretch: 110%; text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.8rem;
-  color: var(--ambar);
-}
-.painel__hora { color: var(--texto-3); font-weight: 600; letter-spacing: 0.08em; }
-.painel__hora time { font-family: var(--f-mono); color: var(--texto-2); font-variant-numeric: tabular-nums; letter-spacing: 0.04em; }
-.painel__cabecalho, .linha__campos {
-  display: grid;
-  grid-template-columns: calc(var(--pastilha) * 15 + 14 * 3px) calc(var(--pastilha) * 16 + 15 * 3px) auto;
-  column-gap: calc(var(--pastilha) * 0.9);
-}
-.painel__cabecalho {
-  padding: 14px 8px 8px;
-  color: var(--texto-3); font-size: 0.74rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
-}
-.painel__linhas { list-style: none; margin: 0; padding: 0; }
-.linha {
-  display: block; padding: 6px 8px; border-radius: var(--raio-p);
   text-decoration: none; color: inherit;
-  transition: background 0.15s;
+  transition: border-color 0.2s, transform 0.2s var(--ease);
 }
-.linha:hover { background: rgba(255, 255, 255, 0.03); }
-.linha__texto { font-family: var(--f-mono); color: var(--texto-2); }
-.js .linha__texto { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-.campo { display: flex; gap: 3px; }
+.numero:hover { border-color: rgba(255, 178, 26, 0.45); transform: translateY(-2px); }
+.numero__valor {
+  --pastilha: clamp(28px, 2.7vw, 38px);
+  min-height: calc(var(--pastilha) * 1.42);
+  font: 600 2rem/1.1 var(--f-mono); color: var(--ambar);
+}
+.numero__pastilhas { display: flex; gap: 3px; }
+.numero__rotulo { color: var(--texto-2); font-size: 0.95rem; line-height: 1.4; }
+
 .pastilha {
-  position: relative; display: grid; place-items: center;
+  position: relative; display: grid; place-items: center; flex: none;
   width: var(--pastilha); height: calc(var(--pastilha) * 1.42);
-  border-radius: 3px;
+  border-radius: 4px;
   background: linear-gradient(180deg, #1a2029 0 50%, #141920 50% 100%);
   box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.6), 0 1px 0 rgba(255, 255, 255, 0.03);
-  font: 600 calc(var(--pastilha) * 0.82) / 1 var(--f-mono);
-  color: var(--texto);
+  font: 600 calc(var(--pastilha) * 0.8) / 1 var(--f-mono);
+  color: var(--ambar);
   text-transform: uppercase;
 }
 .pastilha::after {
   content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 1px;
   background: rgba(0, 0, 0, 0.7);
 }
-.campo--escala .pastilha { color: var(--ambar); }
-.campo--status .pastilha { color: var(--verde); }
-.campo--status.campo--alerta .pastilha { color: var(--ambar); }
-.linha:hover .pastilha { background: linear-gradient(180deg, #202734 0 50%, #19202a 50% 100%); }
-.linha__resumo { display: none; }
+.espaco { flex: none; width: calc(var(--pastilha) * 0.18); }
+.numero:hover .pastilha { background: linear-gradient(180deg, #202734 0 50%, #19202a 50% 100%); }
 
 /* ---------- Seções ---------- */
 .secao { padding: clamp(72px, 10vw, 128px) 0; }
@@ -257,7 +240,7 @@ img, canvas { display: block; max-width: 100%; }
 
 /* cronômetro do sync de promoções */
 .cronometro { display: flex; gap: 4px; --pastilha: clamp(30px, 3.4vw, 40px); }
-.cronometro .pastilha { color: var(--ambar); font-size: calc(var(--pastilha) * 0.78); }
+.cronometro .pastilha { font-size: calc(var(--pastilha) * 0.78); }
 .cronometro__texto { font: 600 2.4rem/1 var(--f-mono); color: var(--ambar); }
 .js .cronometro__texto { display: none; }
 
@@ -265,7 +248,7 @@ img, canvas { display: block; max-width: 100%; }
 .pontos { width: 100%; height: 150px; border-radius: 10px; background: #0a0d12; border: 1px solid var(--linha); }
 
 /* ---------- Método ---------- */
-.etapas { list-style: none; margin: 48px 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; counter-reset: etapa; }
+.etapas { list-style: none; margin: 48px 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
 .etapa { position: relative; padding: 24px; border-radius: var(--raio); background: var(--painel); border: 1px solid var(--linha); }
 .etapa:not(:last-child)::after {
   content: ""; position: absolute; top: 44px; right: -18px; width: 18px; height: 2px;
@@ -321,35 +304,24 @@ img, canvas { display: block; max-width: 100%; }
 .js [data-revelar].visivel { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) {
   .js [data-revelar] { opacity: 1; transform: none; transition: none; }
-  .cartao, .botao { transition: none; }
+  .cartao, .botao, .numero { transition: none; }
 }
 
 /* ---------- Responsivo ---------- */
 @media (max-width: 1024px) {
+  .numeros { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .grade { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .etapas { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .etapa:nth-child(2)::after { display: none; }
   .moldura--dupla { grid-template-columns: 1fr; }
-  .painel { --pastilha: clamp(12px, 1.7vw, 23px); }
 }
 @media (max-width: 760px) {
   .nav { display: none; }
   .sumir-no-celular { display: none; }
+  .numeros { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .numero { padding: 18px 16px; }
   .grade, .etapas { grid-template-columns: 1fr; }
   .etapa::after { display: none; }
-  /* No celular: pastilhas só no nome do sistema; escala e status viram uma linha de texto */
-  .painel { --pastilha: min(4.6vw, 19px); }
-  .painel__cabecalho { display: none; }
-  .linha { padding: 10px 4px; border-bottom: 1px solid var(--linha); border-radius: 0; }
-  .painel__linhas li:last-child .linha { border-bottom: 0; }
-  .linha__campos { display: block; }
-  .campo--escala, .campo--status { display: none; }
-  .linha__resumo {
-    display: flex; flex-wrap: wrap; gap: 4px 12px; margin-top: 8px;
-    font: 600 0.8rem/1.3 var(--f-mono); letter-spacing: 0.04em; color: var(--ambar);
-  }
-  .linha__resumo .ok { color: var(--verde); }
-  .linha__resumo .alerta { color: var(--ambar-claro); }
   .stack div { grid-template-columns: 1fr; gap: 4px; }
   .cartao { padding: 22px; }
 }

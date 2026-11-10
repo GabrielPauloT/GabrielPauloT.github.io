@@ -7,7 +7,7 @@ O site é estático (HTML, CSS e JavaScript, sem dependências) e é publicado p
 ## Estrutura
 
 - `index.html`: a página inteira.
-- `assets/css/site.css` e `assets/js/site.js`: visual e interações (painel split-flap, cronômetro, pontos e revelação ao rolar). O JavaScript respeita `prefers-reduced-motion`.
+- `assets/css/site.css` e `assets/js/site.js`: visual e interações (números em pastilhas split-flap, cronômetro, pontos e revelação ao rolar). O JavaScript respeita `prefers-reduced-motion`.
 - `assets/fonts/`: Archivo (variável) e IBM Plex Mono em WOFF2, hospedadas no próprio site. Vêm do Google Fonts e têm licença OFL.
 - `curriculo/Gabriel-Tavares-Curriculo.pdf`: versão pública do currículo, sem telefone. Ela é gerada a partir de `~/projetos/curriculo` com `python3 gerar-pdf.py --sem-telefone curriculo.html <este repo>/curriculo/Gabriel-Tavares-Curriculo.pdf`.
 - `ferramentas/`: fonte da imagem de compartilhamento (`og.html`) e o script que gera `assets/img/og.png`.
